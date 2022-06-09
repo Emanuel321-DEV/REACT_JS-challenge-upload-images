@@ -92,17 +92,20 @@ export default function Home(): JSX.Element {
       <Box maxW={1120} px={20} mx="auto" my={20}>
         <CardList cards={formattedData} />
 
-        <Button
-          onClick={() => fetchNextPage()}
-          disabled={!hasNextPage || isFetchingNextPage}
-        >
-          {/* eslint-disable-next-line no-nested-ternary */}
-          {isFetchingNextPage
-            ? 'Loading more...'
-            : hasNextPage
-            ? 'Load More'
-            : 'Nothing more to load'}
-        </Button>
+        {hasNextPage && (
+          <Button
+            onClick={() => {
+              fetchNextPage();
+            }}
+            mt={6}
+          >
+            {isFetchingNextPage
+              ? 'Carregando...'
+              : hasNextPage
+              ? 'Carregar mais'
+              : ''}
+          </Button>
+        )}
 
         {/* TODO RENDER LOAD MORE BUTTON IF DATA HAS NEXT PAGE */}
       </Box>

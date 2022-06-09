@@ -20,19 +20,33 @@ export function CardList({ cards }: CardsProps): JSX.Element {
   const { onOpen, isOpen, onClose } = useDisclosure();
 
   // TODO SELECTED IMAGE URL STATE
+  const [selectedImgUrl, setSelectedImgUrl] = useState('');
 
   // TODO FUNCTION HANDLE VIEW IMAGE
+  function handleViewImage(url: string): void {
+    onOpen();
+    setSelectedImgUrl(url);
+  }
 
   return (
     <>
       {/* TODO CARD GRID */}
       <Grid templateColumns="repeat(3, 1fr)" gap={40}>
         {cards.map(card => (
-          <Card data={card} onClick={() => onOpen(ModalViewImage)} />
+          <Card
+            key={card.id}
+            data={card}
+            viewImage={() => handleViewImage(card.url)}
+          />
         ))}
       </Grid>
 
       {/* TODO MODALVIEWIMAGE */}
+      <ModalViewImage
+        isOpen={isOpen}
+        onClose={onClose}
+        imgUrl={selectedImgUrl}
+      />
     </>
   );
 }

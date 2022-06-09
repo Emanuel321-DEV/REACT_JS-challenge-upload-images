@@ -20,6 +20,11 @@ interface CardProps {
   viewImage: (url: string) => void;
 }
 
+/* Ao clicar no card, é preciso abrir a modal ViewImage.tsx.
+Utilize a prop viewImage do Card.tsx para disparar uma função, que recebe como argumento a url da imagem, e irá
+ lidar com a abertura do Modal ViewImage.tsx e o envio da url da imagem desejada.
+*/
+
 export function Card({ data, viewImage }: CardProps): JSX.Element {
   const [isLoading, setIsLoading] = useState(true);
 
